@@ -89,9 +89,13 @@ We use TVR as an end-to-end example for using this code base.
         --output_dir /storage/tvr_default/ --checkpoint 4800 --fp16 --pin_mem
 
     ```
-    The result file will be written at `/storage/tvr_default/results_val/results_4800_all.json`. Change to  ``--query_txt_db /txt/tvr_test_public.db/ --split test_public`` for inference on test_public split. Please format the result file as requested by the evaluation server for submission, our code does not include formatting.
+    The result file will be written at `/storage/tvr_default/results_val/results_4800_all.json`.
+    Change to  ``--query_txt_db /txt/tvr_test_public.db/ --split test_public`` for inference on test_public split.
+    Please format the result file as requested by the evaluation server for submission, our code does not include formatting.
 
-    The above command runs inference on the model we trained. Feel free to replace `--output_dir` and `--checkpoint` with your own model trained in step 3. Single GPU inference is also supported.
+    The above command runs inference on the model we trained.
+    Feel free to replace `--output_dir` and `--checkpoint` with your own model trained in step 3.
+    Single GPU inference is also supported.
 
 
 5. Misc.
@@ -128,7 +132,6 @@ NOTE: train and inference should be ran inside the docker container
     The result file will be written at `$TVQA_EXP/results_test_public/results_$ckpt_all.json`, which can be submitted to the evaluation server. Please format the result file as requested by the evaluation server for submission, our code does not include formatting.
 
 ### VIOLIN
-NOTE: train and inference should be ran inside the docker container
 1. download data
     ```bash
     # outside of the container
@@ -142,7 +145,6 @@ NOTE: train and inference should be ran inside the docker container
     ```
 
 ### DiDeMo
-NOTE: train and inference should be ran inside the docker container
 1. download data
     ```bash
     # outside of the container
@@ -157,7 +159,6 @@ NOTE: train and inference should be ran inside the docker container
     Switch to `config/train-didemo_video_sub-8gpu.json` for ASR augmented DiDeMo results. You can also download the original ASR [here](https://convaisharables.blob.core.windows.net/hero/asr/didemo_asr.jsonl).
 
 ### MSR-VTT Retrieval
-NOTE: train and inference should be ran inside the docker container
 1. download data
     ```bash
     # outside of the container
