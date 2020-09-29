@@ -1,5 +1,5 @@
 # HERO: Hierarchical Encoder for Video+Language Omni-representation Pre-training
-This is the official repository of [UNITER](https://arxiv.org/abs/2005.00200) (EMNLP 2020).
+This is the official repository of [HERO](https://arxiv.org/abs/2005.00200) (EMNLP 2020).
 This repository currently supports finetuning HERO on
 [TVR](https://tvr.cs.unc.edu/), [TVQA](http://tvqa.cs.unc.edu/), [VIOLIN](https://github.com/jimmy646/violin),
 [DiDeMo](https://github.com/LisaAnne/TemporalLanguageRelease), and
