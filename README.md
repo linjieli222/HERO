@@ -40,11 +40,6 @@ We use TVR as an end-to-end example for using this code base.
     ```
     After downloading you should see the following folder structure:
     ```
-    ├── ann
-    │   ├── tvr_train_release.jsonl
-    |   ├── tvr_val_release.jsonl
-    │   ├── tvr_test_public_release.jsonl
-    |   └── tvr_video2dur_idx.json
     ├── finetune
     │   ├── tvr_default
     │   └── tvr_default.tar
