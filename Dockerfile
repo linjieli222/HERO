@@ -20,14 +20,17 @@ RUN cat /etc/ssh/ssh_config | grep -v StrictHostKeyChecking > /etc/ssh/ssh_confi
     echo "    StrictHostKeyChecking no" >> /etc/ssh/ssh_config.new && \
     mv /etc/ssh/ssh_config.new /etc/ssh/ssh_config
 
-# captioning eval tool (nlg-eval)
-RUN apt-get install -y openjdk-8-jdk && apt-get clean &&\
-    pip install git+https://github.com/Maluuba/nlg-eval.git@95af2dcce66feb0d1e2b01e1213eb90b52c9c330 &&\
-    nlg-eval --setup
+# captioning
 
-# original TVC MMT
-RUN python -c "import nltk; nltk.download('punkt')" &&\
-    pip install easydict
+# captioning eval tool (java for PTBtokenizer and METEOR)
+RUN apt-get install -y --no-install-recommends openjdk-8-jdk && apt-get clean
+
+# binaries for cococap eval
+ARG PYCOCOEVALCAP=https://github.com/tylin/coco-caption/raw/master/pycocoevalcap
+RUN mkdir /workspace/cococap_bin/ && \
+    wget $PYCOCOEVALCAP/meteor/meteor-1.5.jar -P /workspace/cococap_bin/ && \
+    wget $PYCOCOEVALCAP/meteor/data/paraphrase-en.gz -P /workspace/cococap_bin/ && \
+    wget $PYCOCOEVALCAP/tokenizer/stanford-corenlp-3.4.1.jar -P /workspace/cococap_bin/
 
 # add new command here
 
