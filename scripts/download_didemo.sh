@@ -26,9 +26,9 @@ for SPLIT in 'train' 'val' 'test'; do
     wget $BLOB/txt_db/didemo_$SPLIT.db.tar -P $DOWNLOAD/txt_db/
     tar -xvf $DOWNLOAD/txt_db/didemo_$SPLIT.db.tar -C $DOWNLOAD/txt_db
 done
-if [ ! -d $DOWNLOAD/txt_db/didemo_subtitles/ ] ; then
-    wget $BLOB/txt_db/didemo_subtitles.tar -P $DOWNLOAD/txt_db/
-    tar -xvf $DOWNLOAD/txt_db/didemo_subtitles.tar -C $DOWNLOAD/txt_db
+if [ ! -d $DOWNLOAD/txt_db/didemo_subtitles.db/ ] ; then
+    wget $BLOB/txt_db/didemo_subtitles.db.tar -P $DOWNLOAD/txt_db/
+    tar -xvf $DOWNLOAD/txt_db/didemo_subtitles.db.tar -C $DOWNLOAD/txt_db
 fi
 
 # pretrainedsd
