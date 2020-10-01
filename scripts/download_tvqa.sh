@@ -24,9 +24,9 @@ for SPLIT in 'train' 'val' 'test_public'; do
     wget $BLOB/txt_db/tvqa_$SPLIT.db.tar -P $DOWNLOAD/txt_db/
     tar -xvf $DOWNLOAD/txt_db/tvqa_$SPLIT.db.tar -C $DOWNLOAD/txt_db
 done
-if [ ! -d $DOWNLOAD/txt_db/tv_subtitles/ ] ; then
-    wget $BLOB/txt_db/tv_subtitles.tar -P $DOWNLOAD/txt_db/
-    tar -xvf $DOWNLOAD/txt_db/tv_subtitles.tar -C $DOWNLOAD/txt_db
+if [ ! -d $DOWNLOAD/txt_db/tv_subtitles.db/ ] ; then
+    wget $BLOB/txt_db/tv_subtitles.db.tar -P $DOWNLOAD/txt_db/
+    tar -xvf $DOWNLOAD/txt_db/tv_subtitles.db.tar -C $DOWNLOAD/txt_db
 fi
 
 # pretrained
