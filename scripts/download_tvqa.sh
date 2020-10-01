@@ -17,6 +17,7 @@ BLOB='https://convaisharables.blob.core.windows.net/hero'
 if [ ! -d $DOWNLOAD/video_db/tv/ ] ; then
     wget $BLOB/video_db/tv.tar -P $DOWNLOAD/video_db/
     tar -xvf $DOWNLOAD/video_db/tv.tar -C $DOWNLOAD/video_db
+fi
 
 # text dbs
 for SPLIT in 'train' 'val' 'test_public'; do
@@ -26,6 +27,7 @@ done
 if [ ! -d $DOWNLOAD/txt_db/tv_subtitles/ ] ; then
     wget $BLOB/txt_db/tv_subtitles.tar -P $DOWNLOAD/txt_db/
     tar -xvf $DOWNLOAD/txt_db/tv_subtitles.tar -C $DOWNLOAD/txt_db
+fi
 
 # pretrained
 if [ ! -f $DOWNLOAD/pretrained/hero-tv-ht100.pt ] ; then

@@ -19,6 +19,7 @@ BLOB='https://convaisharables.blob.core.windows.net/hero'
 if [ ! -d $DOWNLOAD/video_db/didemo/ ] ; then
     wget $BLOB/video_db/didemo.tar -P $DOWNLOAD/video_db/
     tar -xvf $DOWNLOAD/video_db/didemo.tar -C $DOWNLOAD/video_db
+fi
 
 # text dbs
 for SPLIT in 'train' 'val' 'test'; do
@@ -28,6 +29,7 @@ done
 if [ ! -d $DOWNLOAD/txt_db/didemo_subtitles/ ] ; then
     wget $BLOB/txt_db/didemo_subtitles.tar -P $DOWNLOAD/txt_db/
     tar -xvf $DOWNLOAD/txt_db/didemo_subtitles.tar -C $DOWNLOAD/txt_db
+fi
 
 # pretrainedsd
 if [ ! -f $DOWNLOAD/pretrained/hero-tv-ht100.pt ] ; then
