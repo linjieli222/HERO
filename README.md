@@ -14,7 +14,7 @@ Some code in this repo are copied/modified from opensource implementations made 
 [OpenNMT](https://github.com/OpenNMT/OpenNMT-py),
 [Nvidia](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch),
 [TVRetrieval](https://github.com/jayleicn/TVRetrieval) and [UNITER](https://github.com/ChenRocks/UNITER).
-The visual frame features are extracted using [SlowFast](https://github.com/facebookresearch/SlowFast) and ResNet-101. Feature extraction code will be available soon.
+The visual frame features are extracted using [SlowFast](https://github.com/facebookresearch/SlowFast) and ResNet-152. Feature extraction code will be available soon.
 
 
 ## Requirements
