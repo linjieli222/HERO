@@ -40,6 +40,11 @@ class VideoModelConfig(object):
             self.q_config = RobertaModelConfig.from_dict(config["q_config"])
         else:
             self.q_config = None
+        # for TVC decoder
+        if "d_config" in config:
+            self.d_config = RobertaModelConfig.from_dict(config["d_config"])
+        else:
+            self.d_config = None
         self.initializer_range = self.f_config.initializer_range
 
     @classmethod
@@ -53,6 +58,7 @@ class VideoModelConfig(object):
         logger.info(f"     Cross-Modal Transformer config: {self.f_config}")
         logger.info(f"     Temporal Transformer config: {self.c_config}")
         logger.info(f"     QueryEncoder config: {self.q_config}")
+        logger.info(f"     Decoder Transformer config: {self.d_config}")
 
 
 class VideoPreTrainedModel(RobertaPreTrainedModel):
