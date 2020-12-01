@@ -17,7 +17,7 @@ Some code in this repo are copied/modified from opensource implementations made 
 [TVRetrieval](https://github.com/jayleicn/TVRetrieval),
 [TVCaption](https://github.com/jayleicn/TVCaption),
 and [UNITER](https://github.com/ChenRocks/UNITER).
-The visual frame features are extracted using [SlowFast](https://github.com/facebookresearch/SlowFast) and ResNet-152. Feature extraction code will be available soon.
+The visual frame features are extracted using [SlowFast](https://github.com/facebookresearch/SlowFast) and ResNet-152. Feature extraction code is available at [HERO_Video_Feature_Extractor](https://github.com/linjieli222/HERO_Video_Feature_Extractor)
 
 
 ## Requirements
@@ -102,13 +102,34 @@ We use TVR as an end-to-end example for using this code base.
 
 
 5. Misc.
-    ```bash
-    # text annotation and subtitle preprocessing
-    bash scripts/create_txtdb.sh $PATH_TO_STORAGE/txt_db $PATH_TO_STORAGE/ann
+In case you would like to reproduce the whole preprocessing pipeline.
 
-    # visual feature extraction will be available soon
+* Text annotation and subtitle preprocessing
+    ```bash
+    # outside of the container
+    bash scripts/create_txtdb.sh $PATH_TO_STORAGE/txt_db $PATH_TO_STORAGE/ann
     ```
-    In case you would like to reproduce the whole preprocessing pipeline.
+
+* Video feature extraction
+
+    We provide feature extraction code at [HERO_Video_Feature_Extractor](https://github.com/linjieli222/HERO_Video_Feature_Extractor).
+    Please follow the link for instructions to extract both 2D ResNet features and 3D SlowFast features.
+    These features are saved as separate .npz files per video.
+
+* Video feature preprocessing and saved to lmdb
+    ```bash
+    # inside of the container
+
+    # Gather slowfast/resnet feature paths
+    python scripts/collect_video_feature_paths.py  --feature_dir $PATH_TO_STORAGE/feature_extraction_output\
+        --output $PATH_TO_STORAGE/video_db --dataset $DATASET_NAME
+    
+    # Convert to lmdb
+    python scripts/convert_videodb.py --vfet_info_file $PATH_TO_STORAGE/video_db/$DATASET_NAME/video_feat_info.pkl \
+        --output $PATH_TO_STORAGE/video_db --dataset $DATASET_NAME --frame_length 1.5
+    ```
+    - `--frame_length`: 1 feature per "frame_length" seconds, we use 1.5/2 in our implementation. set it to be consistent with the one used in feature extraction.
+    - `--compress`: enable compression of lmdb
 
 ## Downstream Tasks Finetuning
 
