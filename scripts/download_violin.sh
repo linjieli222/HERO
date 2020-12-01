@@ -17,16 +17,19 @@ BLOB='https://convaisharables.blob.core.windows.net/hero'
 if [ ! -d $DOWNLOAD/video_db/violin/ ] ; then
     wget $BLOB/video_db/violin.tar -P $DOWNLOAD/video_db/
     tar -xvf $DOWNLOAD/video_db/violin.tar -C $DOWNLOAD/video_db
+    rm $DOWNLOAD/video_db/violin.tar
 fi
 
 # text dbs
 for SPLIT in 'train' 'val' 'test'; do
     wget $BLOB/txt_db/violin_$SPLIT.db.tar -P $DOWNLOAD/txt_db/
     tar -xvf $DOWNLOAD/txt_db/violin_$SPLIT.db.tar -C $DOWNLOAD/txt_db
+    rm $DOWNLOAD/txt_db/violin_$SPLIT.db.tar
 done
 if [ ! -d $DOWNLOAD/txt_db/violin_subtitles.db/ ] ; then
     wget $BLOB/txt_db/violin_subtitles.db.tar -P $DOWNLOAD/txt_db/
     tar -xvf $DOWNLOAD/txt_db/violin_subtitles.db.tar -C $DOWNLOAD/txt_db
+    rm $DOWNLOAD/txt_db/violin_subtitles.db.tar
 fi
 
 # pretrained

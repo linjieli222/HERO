@@ -17,16 +17,19 @@ BLOB='https://convaisharables.blob.core.windows.net/hero'
 if [ ! -d $DOWNLOAD/video_db/tv/ ] ; then
     wget $BLOB/video_db/tv.tar -P $DOWNLOAD/video_db/
     tar -xvf $DOWNLOAD/video_db/tv.tar -C $DOWNLOAD/video_db --strip-components 1
+    rm $DOWNLOAD/video_db/tv.tar
 fi
 
 # text dbs
 for SPLIT in 'train' 'val' ; do
     wget $BLOB/txt_db/tvc_$SPLIT.db.tar -P $DOWNLOAD/txt_db/
     tar -xvf $DOWNLOAD/txt_db/tvc_$SPLIT.db.tar -C $DOWNLOAD/txt_db
+    rm $DOWNLOAD/txt_db/tvc_$SPLIT.db.tar
 done
 if [ ! -d $DOWNLOAD/txt_db/tv_subtitles.db/ ] ; then
     wget $BLOB/txt_db/tv_subtitles.db.tar -P $DOWNLOAD/txt_db/
     tar -xvf $DOWNLOAD/txt_db/tv_subtitles.db.tar -C $DOWNLOAD/txt_db
+    rm $DOWNLOAD/txt_db/tv_subtitles.db.tar
 fi
 
 # pretrained

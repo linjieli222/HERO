@@ -31,7 +31,7 @@ for SPLIT in 'train' 'val' 'test_public'; do
         --mount src=$OUT_DIR,dst=/txt_db,type=bind \
         --mount src=$ANN_DIR,dst=/ann,type=bind,readonly \
         -w /src linjieli222/hero \
-        python prepro_query.py --annotation /ann/tvr_$SPLIT.jsonl \
+        python script/prepro_query.py --annotation /ann/tvr_$SPLIT.jsonl \
                          --output /txt_db/tvr_${SPLIT}.db \
                          --task tvr
 done
@@ -45,5 +45,5 @@ docker run --ipc=host --rm -it \
     --mount src=$OUT_DIR,dst=/txt_db,type=bind \
     --mount src=$ANN_DIR,dst=/ann,type=bind,readonly \
     -w /src linjieli222/hero \
-    /bin/bash -c "python prepro_sub.py --annotation /ann/tv_subtitles.jsonl --output /txt_db/tv_subtitles.db --vid2nframe /ann/tv_vid2nframe.json --frame_length 1.5; cp /ann/vid2dur_idx.json /txt_db/tv_subtitles.db/"
+    /bin/bash -c "python script/prepro_sub.py --annotation /ann/tv_subtitles.jsonl --output /txt_db/tv_subtitles.db --vid2nframe /ann/tv_vid2nframe.json --frame_length 1.5; cp /ann/vid2dur_idx.json /txt_db/tv_subtitles.db/"
 echo "done"

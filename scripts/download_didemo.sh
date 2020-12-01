@@ -19,16 +19,19 @@ BLOB='https://convaisharables.blob.core.windows.net/hero'
 if [ ! -d $DOWNLOAD/video_db/didemo/ ] ; then
     wget $BLOB/video_db/didemo.tar -P $DOWNLOAD/video_db/
     tar -xvf $DOWNLOAD/video_db/didemo.tar -C $DOWNLOAD/video_db
+    rm $DOWNLOAD/video_db/didemo.tar
 fi
 
 # text dbs
 for SPLIT in 'train' 'val' 'test'; do
     wget $BLOB/txt_db/didemo_$SPLIT.db.tar -P $DOWNLOAD/txt_db/
     tar -xvf $DOWNLOAD/txt_db/didemo_$SPLIT.db.tar -C $DOWNLOAD/txt_db
+    rm $DOWNLOAD/txt_db/didemo_$SPLIT.db.tar
 done
 if [ ! -d $DOWNLOAD/txt_db/didemo_subtitles.db/ ] ; then
     wget $BLOB/txt_db/didemo_subtitles.db.tar -P $DOWNLOAD/txt_db/
     tar -xvf $DOWNLOAD/txt_db/didemo_subtitles.db.tar -C $DOWNLOAD/txt_db
+    rm $DOWNLOAD/txt_db/didemo_subtitles.db.tar
 fi
 
 # pretrainedsd
