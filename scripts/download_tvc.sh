@@ -20,9 +20,9 @@ if [ ! -d $DOWNLOAD/video_db/tv/ ] ; then
 fi
 
 # text dbs
-for SPLIT in 'train' 'val' 'test_public'; do
-    wget $BLOB/txt_db/tvqa_$SPLIT.db.tar -P $DOWNLOAD/txt_db/
-    tar -xvf $DOWNLOAD/txt_db/tvqa_$SPLIT.db.tar -C $DOWNLOAD/txt_db
+for SPLIT in 'train' 'val' ; do
+    wget $BLOB/txt_db/tvc_$SPLIT.db.tar -P $DOWNLOAD/txt_db/
+    tar -xvf $DOWNLOAD/txt_db/tvc_$SPLIT.db.tar -C $DOWNLOAD/txt_db
 done
 if [ ! -d $DOWNLOAD/txt_db/tv_subtitles.db/ ] ; then
     wget $BLOB/txt_db/tv_subtitles.db.tar -P $DOWNLOAD/txt_db/
@@ -33,3 +33,10 @@ fi
 if [ ! -f $DOWNLOAD/pretrained/hero-tv-ht100.pt ] ; then
     wget $BLOB/pretrained/hero-tv-ht100.pt -P $DOWNLOAD/pretrained/
 fi
+
+# raw data
+RAW_URL=https://raw.githubusercontent.com/jayleicn/TVCaption/66666ec08657d8963b165b18eafabd6427d44261/data/
+for SPLIT in 'train' 'val' 'test_public'; do
+    wget $RAW_URL/tvc_${SPLIT}_release.jsonl -P $DOWNLOAD/txt_db
+done
+wget $RAW_URL/tvqa_preprocessed_subtitles.jsonl -P $DOWNLOAD/txt_db

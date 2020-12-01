@@ -1,7 +1,8 @@
 # HERO: Hierarchical Encoder for Video+Language Omni-representation Pre-training
 This is the official repository of [HERO](https://arxiv.org/abs/2005.00200) (EMNLP 2020).
 This repository currently supports finetuning HERO on
-[TVR](https://tvr.cs.unc.edu/), [TVQA](http://tvqa.cs.unc.edu/), [VIOLIN](https://github.com/jimmy646/violin),
+[TVR](https://tvr.cs.unc.edu/), [TVQA](http://tvqa.cs.unc.edu/), [TVC](https://tvr.cs.unc.edu/tvc.html),
+[VIOLIN](https://github.com/jimmy646/violin),
 [DiDeMo](https://github.com/LisaAnne/TemporalLanguageRelease), and
 [MSR-VTT Retrieval](http://ms-multimedia-challenge.com/2017/challenge).
 The best pre-trained checkpoint (on both [HowTo100M](https://www.di.ens.fr/willow/research/howto100m/) and [TV](http://tvqa.cs.unc.edu/) Dataset) are released. Code for HERO pre-training on TV Dataset is also available.
@@ -13,7 +14,9 @@ Some code in this repo are copied/modified from opensource implementations made 
 [HuggingFace](https://github.com/huggingface/transformers),
 [OpenNMT](https://github.com/OpenNMT/OpenNMT-py),
 [Nvidia](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch),
-[TVRetrieval](https://github.com/jayleicn/TVRetrieval) and [UNITER](https://github.com/ChenRocks/UNITER).
+[TVRetrieval](https://github.com/jayleicn/TVRetrieval),
+[TVCaption](https://github.com/jayleicn/TVCaption),
+and [UNITER](https://github.com/ChenRocks/UNITER).
 The visual frame features are extracted using [SlowFast](https://github.com/facebookresearch/SlowFast) and ResNet-152. Feature extraction code will be available soon.
 
 
@@ -130,6 +133,29 @@ NOTE: train and inference should be ran inside the docker container
         --output_dir $TVQA_EXP --checkpoint $ckpt --pin_mem --fp16
     ```
     The result file will be written at `$TVQA_EXP/results_test_public/results_$ckpt_all.json`, which can be submitted to the evaluation server. Please format the result file as requested by the evaluation server for submission, our code does not include formatting.
+
+### TVC
+1. download data
+    ```bash
+    # outside of the container
+    bash scripts/download_tvc.sh $PATH_TO_STORAGE
+    ```
+2. train
+    ```bash
+    # inside the container
+    horovodrun -np 8 python train_tvc.py --config config/train-tvc-8gpu.json \
+        --output_dir $TVC_EXP
+    ```
+3. inference
+    ```bash
+    # inside the container
+    python inf_tvc.py --model_dir $TVC_EXP --ckpt_step 7000 \
+        --target_clip /txt/tvc_val_release.jsonl --output tvc_val_output.jsonl
+    ```
+    - `tvc_val_output.jsonl` will be in the official TVC submission format.
+    - change to `--target_clip /txt/tvc_test_public_release.jsonl` for test results.
+
+NOTE: see `scripts/prepro_tvc.sh` for LMDB preprocessing.
 
 ### VIOLIN
 1. download data
