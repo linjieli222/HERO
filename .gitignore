@@ -2,6 +2,7 @@
 tags
 
 # compiled files #
+__pycache__
 *.pyc
 
 # Packages #
