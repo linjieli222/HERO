@@ -32,7 +32,6 @@ from utils.const import VFEAT_DIM, VCMR_IOU_THDS
 from utils.tvr_standalone_eval import eval_retrieval
 from utils.distributed import all_gather_list
 from utils.misc import Struct
-from cytoolz import concat
 from utils.basic_utils import (
     load_json, save_json)
 from utils.tvr_eval_utils import get_submission_top_n

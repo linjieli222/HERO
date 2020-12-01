@@ -33,7 +33,6 @@ from utils.const import VFEAT_DIM, VCMR_IOU_THDS
 from utils.tvr_standalone_eval import eval_retrieval
 from utils.distributed import all_gather_list
 from utils.misc import Struct
-from cytoolz import concat
 from utils.basic_utils import (
     load_json, save_json)
 from utils.tvr_eval_utils import (
@@ -213,7 +212,8 @@ def validate_full_vcmr(model, val_loader, split, opts, model_opts):
         targets = batch['targets']
         if has_gt_target and targets.min() < 0:
             has_gt_target = False
-            LOGGER.info("No GT annotations provided, only generate predictions")
+            LOGGER.info(
+                "No GT annotations provided, only generate predictions")
         del batch['targets']
         del batch['qids']
         del batch['vids']
