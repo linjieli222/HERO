@@ -123,8 +123,18 @@ def main(opts):
     if not exists(result_dir) and rank == 0:
         os.makedirs(result_dir)
 
-    all_results = list(concat(all_gather_list(results)))
+    all_results_list = all_gather_list(results)
     if hvd.rank() == 0:
+        all_results = {"video2idx": all_results_list[0]["video2idx"]}
+        for rank_id in range(hvd.size()):
+            for key, val in all_results_list[rank_id].items():
+                if key == "video2idx":
+                    continue
+                if key not in all_results:
+                    all_results[key] = []
+                all_results[key].extend(all_results_list[rank_id][key])
+        LOGGER.info('All results joined......')
+
         save_json(
             all_results,
             f'{result_dir}/results_{opts.checkpoint}_all.json')

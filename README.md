@@ -121,7 +121,7 @@ In case you would like to reproduce the whole preprocessing pipeline.
     # inside of the container
 
     # Gather slowfast/resnet feature paths
-    python scripts/collect_video_feature_paths.py  --feature_dir $PATH_TO_STORAGE/feature_extraction_output\
+    python scripts/collect_video_feature_paths.py  --feature_dir $PATH_TO_STORAGE/feature_output_dir\
         --output $PATH_TO_STORAGE/video_db --dataset $DATASET_NAME
     
     # Convert to lmdb
