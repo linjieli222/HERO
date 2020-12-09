@@ -45,21 +45,15 @@ We use TVR as an end-to-end example for using this code base.
     ```
     ├── finetune
     │   ├── tvr_default
-    │   └── tvr_default.tar
     ├── video_db
     │   ├── tv
-    │   └── tv.tar
     ├── pretrained
     │   └── hero-tv-ht100.pt
     └── txt_db
         ├── tv_subtitles.db
-        ├── tv_subtitles.tar
         ├── tvr_train.db
-        ├── tvr_train.tar
         ├── tvr_val.db
-        └── tvr_val.tar
-        ├── tvr_test_public.db
-        └── tvr_test_public.tar
+        └── tvr_test_public.db
     ```
 
 2. Launch the Docker container for running the experiments.
@@ -125,7 +119,7 @@ In case you would like to reproduce the whole preprocessing pipeline.
         --output $PATH_TO_STORAGE/video_db --dataset $DATASET_NAME
     
     # Convert to lmdb
-    python scripts/convert_videodb.py --vfet_info_file $PATH_TO_STORAGE/video_db/$DATASET_NAME/video_feat_info.pkl \
+    python scripts/convert_videodb.py --vfeat_info_file $PATH_TO_STORAGE/video_db/$DATASET_NAME/video_feat_info.pkl \
         --output $PATH_TO_STORAGE/video_db --dataset $DATASET_NAME --frame_length 1.5
     ```
     - `--frame_length`: 1 feature per "frame_length" seconds, we use 1.5/2 in our implementation. set it to be consistent with the one used in feature extraction.
