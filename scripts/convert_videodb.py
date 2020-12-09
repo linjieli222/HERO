@@ -81,11 +81,13 @@ def main(opts):
     #             files.append(os.path.join(root, f))
     load = load_npz()
     name2nframes = {}
+    corrupted_files = set()
     with mp.Pool(opts.nproc) as pool, tqdm(total=len(files)) as pbar:
         for i, (fname, features, nframes) in enumerate(
                 pool.imap_unordered(load, files, chunksize=128)):
             if not features or nframes == 0:
                 pbar.update(1)
+                corrupted_files.add(fname)
                 continue  # corrupted feature
             if opts.clip_interval != -1:
                 feature_values = features["features"]
@@ -127,6 +129,11 @@ def main(opts):
         id2frame = name2nframes
     with open(id2frame_len_file, 'w') as f:
         json.dump(id2frame, f)
+    corrupted_files = list(corrupted_files)
+    if len(corrupted_files) > 0:
+        corrupted_output_file = f'{opts.output}/{opts.dataset}/corrupted.json'
+        with open(corrupted_output_file, 'w') as f:
+            json.dump(corrupted_files, f)
 
 
 if __name__ == '__main__':
