@@ -104,7 +104,7 @@ class HeroForVideoQA(HeroModel):
                     ignore_index=-1)
                 temporal_loss = (st_loss + ed_loss)/2.
                 qa_loss = F.cross_entropy(logits, targets, reduction='mean',
-                                            ignore_index=-1)
+                                          ignore_index=-1)
                 return qa_loss, temporal_loss
             else:
                 return logits
