@@ -117,7 +117,7 @@ def main(opts):
             pbar.update(1)
         txn.commit()
         env.close()
-    id2frame_len_file = f'{opts.output}/{opts.dataset}/id2frame_len.json'
+    id2frame_len_file = f'{opts.output}/{opts.dataset}/id2nframe.json'
     if os.path.exists(id2frame_len_file):
         id2frame = json.load(open(id2frame_len_file, "r"))
         for key, val in id2frame.items():
