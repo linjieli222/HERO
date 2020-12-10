@@ -11,9 +11,13 @@ from os.path import exists
 from cytoolz import curry
 from tqdm import tqdm
 from transformers import RobertaTokenizer
+import copy
+
+# quick hack for import
+import sys
+sys.path.insert(0, '/src')
 from utils.basic_utils import save_jsonl, save_json
 from data.data import open_lmdb
-import copy
 
 
 @curry

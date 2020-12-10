@@ -15,11 +15,15 @@ import numpy as np
 from cytoolz import curry
 from tqdm import tqdm
 from transformers import RobertaTokenizer
+import copy
+import html
+
+# quick hack for import
+import sys
+sys.path.insert(0, '/src')
 from utils.basic_utils import (
     flat_list_of_lists, load_jsonl, save_json, load_json)
 from data.data import open_lmdb
-import copy
-import html
 
 
 def load_process_sub_meta(sub_meta_path, vid2nframe, frame_length):
