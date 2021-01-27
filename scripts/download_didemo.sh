@@ -18,7 +18,7 @@ BLOB='https://convaisharables.blob.core.windows.net/hero'
 # video dbs
 if [ ! -d $DOWNLOAD/video_db/didemo/ ] ; then
     wget $BLOB/video_db/didemo.tar -P $DOWNLOAD/video_db/
-    tar -xvf $DOWNLOAD/video_db/didemo.tar -C $DOWNLOAD/video_db
+    tar -xvf $DOWNLOAD/video_db/didemo.tar -C $DOWNLOAD/video_db --strip-components 1
     rm $DOWNLOAD/video_db/didemo.tar
 fi
 
