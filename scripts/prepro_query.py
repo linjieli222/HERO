@@ -2,7 +2,7 @@
 Copyright (c) Microsoft Corporation.
 Licensed under the MIT license.
 
-preprocess TVR/TVQA annotations into LMDB
+preprocess TVR/TVQA/VIOLIN annotations into LMDB
 """
 import argparse
 import json
@@ -93,6 +93,29 @@ def process_tvqa(jsonl, db, tokenizer):
     return id2len, query2video, query_data
 
 
+def process_violin(jsonl, db, tokenizer):
+    id2len = {}
+    query2video = {}  # not sure if useful
+    query_data = []
+    for line in tqdm(
+            jsonl,
+            desc='processing Violin with raw statement text'):
+        example = json.loads(line)
+        query_data.append(copy.copy(example))
+        id_ = example['desc_id']
+        input_ids = tokenizer(example["desc"])
+        vid = example['vid_name']
+        target = example['label']
+        query2video[id_] = vid
+        example['vid'] = vid
+        id2len[id_] = len(input_ids)
+        example['input_ids'] = input_ids
+        example['target'] = target
+        example['qid'] = str(id_)
+        db[str(id_)] = example
+    return id2len, query2video, query_data
+
+
 def main(opts):
     if not exists(opts.output):
         os.makedirs(opts.output)
@@ -124,6 +147,9 @@ def main(opts):
             elif opts.task == "tvqa":
                 id2lens, query2video, query_data = process_tvqa(
                     ann, db, tokenizer)
+            elif opts.task == "violin":
+                id2lens, query2video, query_data = process_violin(
+                    ann, db, tokenizer)
             else:
                 raise NotImplementedError(
                     f"prepro for {opts.task} not implemented")
@@ -142,7 +168,7 @@ if __name__ == '__main__':
     parser.add_argument('--toker', default='roberta-base',
                         help='which RoBerTa tokenizer to used')
     parser.add_argument('--task', default='tvr',
-                        choices=["tvr", "tvqa"],
+                        choices=["tvr", "tvqa", "violin"],
                         help='which RoBerTa tokenizer to used')
     args = parser.parse_args()
     main(args)
