@@ -117,7 +117,7 @@ def compute_accuracies(predictions, labels):
 
 @torch.no_grad()
 def validate_violin(model, val_loader, split, save_logits=False):
-    LOGGER.info("start running validation on VIOLIN {split} split...")
+    LOGGER.info(f"start running validation on VIOLIN {split} split...")
     model.eval()
     val_loss = 0
     n_ex = 0
