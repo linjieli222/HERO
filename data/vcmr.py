@@ -31,7 +31,9 @@ class VcmrDataset(Dataset):
             self.global_vid2idx = self.vid2idx
         else:
             self.vid2dur = self.video_db.img_db.name2nframe
-            self.global_vid2idx = self.vid2dur
+            self.global_vid2idx = {
+                vid_name: idx for idx, vid_name in
+                enumerate(sorted(list(self.vid2dur.keys())))
             self.vid2idx = {
                 vid_name: self.global_vid2idx[vid_name]
                 for vid_name in video_ids}
