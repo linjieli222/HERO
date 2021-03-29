@@ -235,7 +235,7 @@ Features and code will be available soon ....
 ## Citation
 
 If you find this code useful for your research, please consider citing:
-```
+```bibtex
 @inproceedings{li2020hero,
   title={HERO: Hierarchical Encoder for Video+ Language Omni-representation Pre-training},
   author={Li, Linjie and Chen, Yen-Chun and Cheng, Yu and Gan, Zhe and Yu, Licheng and Liu, Jingjing},
