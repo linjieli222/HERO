@@ -217,7 +217,7 @@ NOTE: see `scripts/prepro_tvc.sh` for LMDB preprocessing.
 For raw annotation, please refer to [How2R and How2QA](https://github.com/ych133/How2R-and-How2QA).
 Features and code will be available soon ....
 
-## Pre-tranining
+## Pre-training
 1. download data
     ```bash
     # outside of the container
@@ -229,7 +229,7 @@ Features and code will be available soon ....
     horovodrun -np 16 python pretrain.py --config config/pretrain-tv-16gpu.json \
         --output_dir $PRETRAIN_EXP
     ```
-    Unfortunately, we cannot host HowTo100M features due to its large size. Users will need to process them on their own. We will provide a smaller sample for easier reference to the expected format soon.
+    Unfortunately, we cannot host HowTo100M features due to its large size. Users can either process them on their own or send your inquiry to my email address (which you can find on our paper).
 
 
 ## Citation
