@@ -38,7 +38,7 @@ from utils.save import ModelSaver, save_training_meta, TrainingRestorer
 from utils.misc import NoOp, set_dropout, set_random_seed
 from utils.const import VFEAT_DIM, MAX_FRM_SEQ_LEN
 from config.config import shared_configs
-from .load_data import load_video_sub_dataset
+from load_data import load_video_sub_dataset
 
 
 def build_target_loaders(target, tgt_ratio, opts):
