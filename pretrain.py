@@ -47,7 +47,7 @@ def build_target_loaders(target, tgt_ratio, opts):
                                 opts.max_clip_len)
         video_db = [
             load_video_sub_dataset(
-                f"{target['vfeat_db']}/{shard}", sub_txt_db,
+                f"{opts.img_db}/{target['vfeat_db']}/{shard}", sub_txt_db,
                 target['vfeat_interval'], opts)
             for shard in target['vfeat_shards']
         ]

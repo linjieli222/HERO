@@ -34,7 +34,7 @@ def load_video_sub_dataset(v_feat_path, sub_txt_db, vfeat_interval, opts):
         vfeat_interval,  opts.compressed_db,
         opts.max_clip_len)
     if not isinstance(sub_txt_db, SubTokLmdb):
-        if "msrvtt" in opts.task:
+        if hasattr(opts, "task") and "msrvtt" in opts.task:
             sub_txt_db = VrSubTokLmdb(sub_txt_db, opts.max_clip_len)
         else:
             sub_txt_db = SubTokLmdb(sub_txt_db, opts.max_clip_len)
