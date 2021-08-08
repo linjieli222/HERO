@@ -19,8 +19,9 @@ from utils.basic_utils import save_json, make_zipfile, load_json
 
 
 def save_training_meta(args):
-    if args.rank > 0:
-        return
+    # Comment out, since rank is not saved to args. Safeguard save_training_meta already in training scripts.
+    # if args.rank > 0:
+    #    return
 
     # args is an EasyDict object, treat it the same as a normal dict
     os.makedirs(join(args.output_dir, 'log'), exist_ok=True)
