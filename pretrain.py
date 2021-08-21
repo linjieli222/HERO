@@ -425,7 +425,7 @@ def validate_vsm(model, val_loader, opts):
 
         val_loss_st_ed += loss_st_ed.item()
         if opts.lw_neg_ctx != 0 or opts.lw_neg_q != 0:
-            n_pos = len(loss_neg_ctx)
+            n_pos = len(loss_neg_ctx) if loss_neg_ctx.ndim > 0 else 1
             val_loss_neg_ctx += loss_neg_ctx.sum().item()
             val_loss_neg_q += loss_neg_q.sum().item()
             n_ex_pos += n_pos
