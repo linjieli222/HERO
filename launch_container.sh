@@ -19,6 +19,7 @@ else
 fi
 
 docker run --gpus '"'device=$CUDA_VISIBLE_DEVICES'"' --ipc=host --network=host --rm -it \
+    --device /dev/nvidia0 --device /dev/nvidia-uvm --device /dev/nvidia-uvm-tools --device /dev/nvidiactl \
     --mount src=$(pwd),dst=/src,type=bind \
     --mount src=$OUTPUT,dst=/storage,type=bind \
     --mount src=$PRETRAIN_DIR,dst=/pretrain,type=bind,readonly \
